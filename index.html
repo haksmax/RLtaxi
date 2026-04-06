@@ -518,33 +518,33 @@ to   { opacity: 1; transform: translateY(0); }
       <div class="res-title">Demande de réservation</div>
       <div class="res-subtitle">Pour toute réservation, merci de renseigner les informations ci-dessous</div>
     </div>
-    <div class="res-body">
+    <form class="res-body" action="https://formspree.io/f/xykblwep" method="POST">
       <div class="res-field">
         <label class="field-label">Nom & Prénom</label>
-        <input class="field-input" type="text" id="f-nom" placeholder="Votre nom et prénom">
+        <input class="field-input" type="text" name="nom" placeholder="Votre nom et prénom" required>
       </div>
       <div class="res-field">
         <label class="field-label">Numéro de téléphone</label>
-        <input class="field-input" type="tel" id="f-tel" placeholder="Votre numéro de téléphone">
+        <input class="field-input" type="tel" name="telephone" placeholder="Votre numéro de téléphone" required>
       </div>
       <div class="res-field">
         <label class="field-label">Date & Heure de prise en charge</label>
-        <input class="field-input" type="datetime-local" id="f-heure">
+        <input class="field-input" type="datetime-local" name="date_heure" required>
       </div>
       <div class="res-field">
         <label class="field-label">Adresse de prise en charge</label>
-        <input class="field-input" type="text" id="f-adresse" placeholder="Adresse complète du point de départ">
+        <input class="field-input" type="text" name="adresse_depart" placeholder="Adresse complète du point de départ" required>
       </div>
       <div class="res-field">
         <label class="field-label">Destination</label>
-        <input class="field-input" type="text" id="f-dest" placeholder="Votre destination">
+        <input class="field-input" type="text" name="destination" placeholder="Votre destination" required>
       </div>
       <div class="res-field">
         <label class="field-label">Informations complémentaires</label>
-        <textarea class="field-textarea" id="f-note" placeholder="Nombre de passagers, bagages..."></textarea>
+        <textarea class="field-textarea" name="informations" placeholder="Nombre de passagers, bagages..."></textarea>
       </div>
-      <button class="send-btn" onclick="sendReservation()">Envoyer la réservation</button>
-    </div>
+      <button type="submit" class="send-btn">Envoyer la réservation</button>
+    </form>
   </div>
 </div>
 
