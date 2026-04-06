@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RL Taxi – Rabah LARBI</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --black: #0e0e0e;
+    --dark: #151515;
+    --card: #1c1c1c;
+    --text: #e8e2d8;
+    --muted: #888;
+    --border: rgba(201,168,76,0.2);
+  }
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: var(–black);
+color: var(–text);
+font-family: ‘Jost’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.04’/%3E%3C/svg%3E”);
+pointer-events: none;
+z-index: 0;
+opacity: 0.6;
+}
+
+/* ── HERO ── */
+.hero {
+position: relative;
+padding: 60px 24px 40px;
+text-align: center;
+overflow: hidden;
+}
+
+.hero::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 50%;
+transform: translateX(-50%);
+width: 1px;
+height: 40px;
+background: linear-gradient(to bottom, var(–gold), transparent);
+}
+
+/* Cercles décoratifs */
+.deco-circle {
+position: absolute;
+border-radius: 50%;
+border: 1px solid var(–border);
+pointer-events: none;
+}
+.deco-circle-1 { width: 300px; height: 300px; top: -120px; left: -80px; }
+.deco-circle-2 { width: 200px; height: 200px; top: -60px; left: -20px; }
+.deco-circle-3 { width: 280px; height: 280px; top: -100px; right: -80px; }
+
+.brand-label {
+font-size: 10px;
+letter-spacing: 0.45em;
+color: var(–gold);
+text-transform: uppercase;
+font-weight: 400;
+margin-bottom: 20px;
+animation: fadeUp 0.7s ease both;
+}
+
+.hero-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(38px, 10vw, 58px);
+font-weight: 300;
+color: var(–text);
+letter-spacing: 0.06em;
+line-height: 1.05;
+animation: fadeUp 0.7s ease both 0.1s;
+}
+
+.hero-name span {
+display: block;
+font-style: italic;
+color: var(–gold-light);
+font-size: 0.65em;
+letter-spacing: 0.12em;
+}
+
+.gold-divider {
+width: 48px;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–gold), transparent);
+margin: 22px auto;
+animation: fadeUp 0.7s ease both 0.2s;
+}
+
+.hero-tagline {
+font-size: 11px;
+letter-spacing: 0.22em;
+color: var(–muted);
+text-transform: uppercase;
+animation: fadeUp 0.7s ease both 0.3s;
+}
+
+/* ── CONTACT BUTTONS ── */
+.contact-section {
+padding: 48px 24px 16px;
+display: flex;
+flex-direction: column;
+gap: 12px;
+max-width: 400px;
+margin: 0 auto;
+position: relative; z-index: 1;
+}
+
+.contact-btn {
+display: flex;
+align-items: center;
+gap: 16px;
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 14px;
+padding: 18px 22px;
+text-decoration: none;
+color: var(–text);
+transition: border-color 0.25s, background 0.25s, transform 0.15s;
+animation: fadeUp 0.6s ease both;
+position: relative;
+overflow: hidden;
+}
+
+.contact-btn::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+opacity: 0;
+transition: opacity 0.25s;
+}
+
+.contact-btn:hover { border-color: var(–gold); transform: translateY(-2px); }
+.contact-btn:hover::before { opacity: 1; }
+.contact-btn:active { transform: scale(0.98); }
+
+.contact-btn:nth-child(1) { animation-delay: 0.35s; }
+.contact-btn:nth-child(2) { animation-delay: 0.45s; }
+
+.btn-icon {
+width: 40px; height: 40px;
+background: rgba(201,168,76,0.1);
+border: 1px solid rgba(201,168,76,0.25);
+border-radius: 10px;
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+}
+
+.btn-icon svg { width: 18px; height: 18px; color: var(–gold); }
+
+.btn-content { flex: 1; }
+
+.btn-label {
+font-size: 9px;
+letter-spacing: 0.22em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 3px;
+opacity: 0.8;
+}
+
+.btn-value {
+font-size: 15px;
+font-weight: 300;
+letter-spacing: 0.05em;
+color: var(–text);
+}
+
+.btn-arrow {
+color: var(–gold);
+opacity: 0.5;
+font-size: 18px;
+}
+
+/* ── SERVICES ── */
+.section {
+padding: 32px 24px;
+max-width: 400px;
+margin: 0 auto;
+position: relative; z-index: 1;
+}
+
+.section-title {
+font-size: 9px;
+letter-spacing: 0.35em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 18px;
+opacity: 0.8;
+animation: fadeUp 0.6s ease both 0.5s;
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+animation: fadeUp 0.6s ease both 0.6s;
+}
+
+.service-card {
+background: var(–card);
+border: 1px solid rgba(255,255,255,0.05);
+border-radius: 12px;
+padding: 16px 14px;
+transition: border-color 0.2s;
+}
+
+.service-card:hover { border-color: var(–border); }
+
+.service-icon { font-size: 20px; margin-bottom: 8px; }
+
+.service-name {
+font-size: 11px;
+font-weight: 400;
+color: var(–text);
+letter-spacing: 0.05em;
+margin-bottom: 3px;
+}
+
+.service-desc {
+font-size: 10px;
+color: var(–muted);
+font-weight: 300;
+line-height: 1.4;
+}
+
+/* ── INFOS PRATIQUES ── */
+.info-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+animation: fadeUp 0.6s ease both 0.65s;
+}
+
+.info-row {
+display: flex;
+align-items: center;
+gap: 14px;
+background: var(–card);
+border: 1px solid rgba(255,255,255,0.04);
+border-radius: 10px;
+padding: 13px 16px;
+}
+
+.info-dot {
+width: 5px; height: 5px;
+border-radius: 50%;
+background: var(–gold);
+flex-shrink: 0;
+opacity: 0.7;
+}
+
+.info-text {
+font-size: 12px;
+font-weight: 300;
+color: #aaa;
+letter-spacing: 0.04em;
+}
+
+.info-text strong { color: var(–text); font-weight: 400; }
+
+/* ── RÉSERVATION ── */
+.reservation-box {
+background: var(–card);
+border: 1px solid var(–border);
+border-radius: 16px;
+overflow: hidden;
+animation: fadeUp 0.6s ease both 0.7s;
+}
+
+.res-header {
+background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+border-bottom: 1px solid var(–border);
+padding: 18px 20px;
+}
+
+.res-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 16px;
+font-weight: 400;
+color: var(–gold-light);
+letter-spacing: 0.08em;
+margin-bottom: 4px;
+}
+
+.res-subtitle {
+font-size: 10px;
+color: var(–muted);
+font-weight: 300;
+letter-spacing: 0.05em;
+}
+
+.res-body {
+padding: 20px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.res-field { display: flex; flex-direction: column; gap: 5px; }
+
+.field-label {
+font-size: 9px;
+letter-spacing: 0.2em;
+color: var(–gold);
+text-transform: uppercase;
+opacity: 0.75;
+}
+
+.field-input, .field-textarea {
+font-family: ‘Jost’, sans-serif;
+font-size: 13px;
+font-weight: 300;
+color: var(–text);
+background: rgba(255,255,255,0.04);
+border: 1px solid rgba(255,255,255,0.08);
+border-radius: 8px;
+padding: 11px 14px;
+outline: none;
+transition: border-color 0.2s;
+letter-spacing: 0.03em;
+width: 100%;
+}
+
+.field-input:focus, .field-textarea:focus {
+border-color: rgba(201,168,76,0.4);
+background: rgba(255,255,255,0.06);
+}
+
+.field-input::placeholder, .field-textarea::placeholder {
+color: #444;
+font-weight: 300;
+}
+
+.field-textarea { resize: none; height: 70px; line-height: 1.5; }
+
+.send-btn {
+background: var(–gold);
+color: #0e0e0e;
+border: none;
+border-radius: 10px;
+padding: 15px 20px;
+font-family: ‘Jost’, sans-serif;
+font-size: 11px;
+font-weight: 500;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+cursor: pointer;
+transition: background 0.2s, transform 0.15s;
+width: 100%;
+margin-top: 4px;
+}
+
+.send-btn:hover { background: var(–gold-light); }
+.send-btn:active { transform: scale(0.98); }
+
+/* ── FOOTER ── */
+.footer {
+text-align: center;
+padding: 32px 24px 48px;
+position: relative; z-index: 1;
+}
+
+.footer-line {
+width: 48px;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–border), transparent);
+margin: 0 auto 20px;
+}
+
+.footer-text {
+font-size: 10px;
+color: #444;
+letter-spacing: 0.15em;
+font-weight: 300;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="deco-circle deco-circle-1"></div>
+  <div class="deco-circle deco-circle-2"></div>
+  <div class="deco-circle deco-circle-3"></div>
+
+  <p class="brand-label">RL Taxi — Paris</p>
+
+  <h1 class="hero-name">
+    LARBI
+    <span>Rabah</span>
+  </h1>
+
+  <div class="gold-divider"></div>
+
+  <p class="hero-tagline">Chauffeur de Taxi Professionnel</p>
+</div>
+
+<!-- CONTACT -->
+
+<div class="contact-section">
+  <a href="tel:+33781112923" class="contact-btn">
+    <div class="btn-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.09a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+    </div>
+    <div class="btn-content">
+      <div class="btn-label">Appeler directement</div>
+      <div class="btn-value">07 81 11 29 23</div>
+    </div>
+    <div class="btn-arrow">›</div>
+  </a>
+
+  <a href="/cdn-cgi/l/email-protection#e496888596868d8c858f8d89a48389858d88ca878b89db9791868e818790d9a08189858a8081c48081c496274d9781969285908d8b8ac4b6a8c4b0859c8dc2868b809dd9a68b8a8e8b9196c8c1d4a5c1d4a5ae81c4978b918c858d9081c4818282818790918196c4918a81c496274d9781969285908d8b8acac1d4a5c1d4a5aa8b89c48190c49496274d8a8b89c4dec4c1d4a5ac81919681c48081c494968d9781c4818ac4878c85968381c4dec4c1d4a5a08197908d8a85908d8b8ac4dec4c1d4a5c1d4a5a78b96808d85888189818a90c8" class="contact-btn">
+    <div class="btn-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+    </div>
+    <div class="btn-content">
+      <div class="btn-label">Envoyer un email</div>
+      <div class="btn-value"><span class="__cf_email__" data-cfemail="52203e3320303b3a33393b3f12353f333b3e7c313d3f">[email&#160;protected]</span></div>
+    </div>
+    <div class="btn-arrow">›</div>
+  </a>
+</div>
+
+<!-- SERVICES -->
+
+<div class="section">
+  <p class="section-title">Nos services</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <div class="service-name">Aéroports</div>
+      <div class="service-desc">CDG, Orly, Beauvais</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚉</div>
+      <div class="service-name">Gares</div>
+      <div class="service-desc">Toutes gares parisiennes</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗺️</div>
+      <div class="service-name">Longue distance</div>
+      <div class="service-desc">Toute la France</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚐</div>
+      <div class="service-name">Van 8 places</div>
+      <div class="service-desc">Jusqu'à 7 passagers</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFOS PRATIQUES -->
+
+<div class="section" style="padding-top: 0;">
+  <p class="section-title">Infos pratiques</p>
+  <div class="info-list">
+    <div class="info-row">
+      <div class="info-dot"></div>
+      <div class="info-text"><strong>Disponible</strong> 7j/7 — 24h/24 sur réservation</div>
+    </div>
+    <div class="info-row">
+      <div class="info-dot"></div>
+      <div class="info-text"><strong>Zone</strong> Paris & région parisienne sans réservation</div>
+    </div>
+    <div class="info-row">
+      <div class="info-dot"></div>
+      <div class="info-text"><strong>France entière</strong> sur réservation</div>
+    </div>
+    <div class="info-row">
+      <div class="info-dot"></div>
+      <div class="info-text"><strong>Paiement</strong> Carte bancaire & Espèces</div>
+    </div>
+    <div class="info-row">
+      <div class="info-dot"></div>
+      <div class="info-text"><strong>Tarifs</strong> réglementés par la préfecture</div>
+    </div>
+  </div>
+</div>
+
+<!-- RÉSERVATION -->
+
+<div class="section" style="padding-top: 0;">
+  <p class="section-title">Faire une réservation</p>
+  <div class="reservation-box">
+    <div class="res-header">
+      <div class="res-title">Demande de réservation</div>
+      <div class="res-subtitle">Pour toute réservation, merci de renseigner les informations ci-dessous</div>
+    </div>
+    <div class="res-body">
+      <div class="res-field">
+        <label class="field-label">Nom & Prénom</label>
+        <input class="field-input" type="text" id="f-nom" placeholder="Votre nom et prénom">
+      </div>
+      <div class="res-field">
+        <label class="field-label">Numéro de téléphone</label>
+        <input class="field-input" type="tel" id="f-tel" placeholder="Votre numéro de téléphone">
+      </div>
+      <div class="res-field">
+        <label class="field-label">Date & Heure de prise en charge</label>
+        <input class="field-input" type="datetime-local" id="f-heure">
+      </div>
+      <div class="res-field">
+        <label class="field-label">Adresse de prise en charge</label>
+        <input class="field-input" type="text" id="f-adresse" placeholder="Adresse complète du point de départ">
+      </div>
+      <div class="res-field">
+        <label class="field-label">Destination</label>
+        <input class="field-input" type="text" id="f-dest" placeholder="Votre destination">
+      </div>
+      <div class="res-field">
+        <label class="field-label">Informations complémentaires</label>
+        <textarea class="field-textarea" id="f-note" placeholder="Nombre de passagers, bagages..."></textarea>
+      </div>
+      <button class="send-btn" onclick="sendReservation()">Envoyer la réservation</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+  <div class="footer-line"></div>
+  <p class="footer-text">RL TAXI — PARIS &nbsp;·&nbsp; RABAH LARBI</p>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+function sendReservation() {
+const nom     = document.getElementById(‘f-nom’).value.trim();
+const tel     = document.getElementById(‘f-tel’).value.trim();
+const heure   = document.getElementById(‘f-heure’).value;
+const adresse = document.getElementById(‘f-adresse’).value.trim();
+const dest    = document.getElementById(‘f-dest’).value.trim();
+const note    = document.getElementById(‘f-note’).value.trim();
+
+if (!nom || !tel || !heure || !adresse || !dest) {
+alert(‘Merci de remplir tous les champs obligatoires : nom, téléphone, date, adresse et destination.’);
+return;
+}
+
+const d = new Date(heure);
+const dateStr  = d.toLocaleDateString(‘fr-FR’, { weekday:‘long’, year:‘numeric’, month:‘long’, day:‘numeric’ });
+const heureStr = d.toLocaleTimeString(‘fr-FR’, { hour:‘2-digit’, minute:‘2-digit’ });
+
+const subject = encodeURIComponent(’Demande de reservation RL Taxi - ’ + nom);
+const body = encodeURIComponent(
+‘Bonjour Rabah,\n\n’ +
+‘Je souhaite effectuer une reservation.\n\n’ +
+’Nom et prenom : ’ + nom + ‘\n’ +
+’Telephone : ’ + tel + ‘\n’ +
+’Date : ’ + dateStr + ‘\n’ +
+’Heure de depart : ’ + heureStr + ‘\n’ +
+’Adresse de depart : ’ + adresse + ‘\n’ +
+’Destination : ’ + dest + ‘\n’ +
+(note ? ’Infos complementaires : ’ + note + ‘\n’ : ‘’) +
+‘\nCordialement,\n’ + nom
+);
+
+const mailtoLink = ‘mailto:rlarbihakim@gmail.com?subject=’ + subject + ‘&body=’ + body;
+
+// Ouvrir dans une nouvelle fenetre pour eviter les erreurs
+const a = document.createElement(‘a’);
+a.href = mailtoLink;
+a.target = ‘_blank’;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+}
