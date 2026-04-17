@@ -375,7 +375,7 @@ body::before {
       <form class="res-body" action="https://formspree.io/f/xykblwep" method="POST">
         <div class="res-field"><label class="field-label">Nom & Prénom</label><input class="field-input" type="text" name="nom" placeholder="Votre nom et prénom" required></div>
         <div class="res-field"><label class="field-label">Numéro de téléphone</label><input class="field-input" type="tel" name="telephone" placeholder="Votre numéro de téléphone" required></div>
-        <div class="res-field"><label class="field-label">Date & Heure de prise en charge</label><input class="field-input" type="datetime-local" name="date_heure" required></div>
+        <div class="res-field"><label class="field-label">Date & Heure de prise en charge</label><input class="field-input" type="datetime-local" name="date_heure" id="date_heure" required></div>
         <div class="res-field"><label class="field-label">Adresse de prise en charge</label><input class="field-input" type="text" name="adresse_depart" placeholder="Adresse complète du point de départ" required></div>
         <div class="res-field"><label class="field-label">Destination</label><input class="field-input" type="text" name="destination" placeholder="Votre destination" required></div>
         <div class="res-field"><label class="field-label">Informations complémentaires</label><textarea class="field-textarea" name="informations" placeholder="Nombre de passagers, bagages..."></textarea></div>
@@ -449,6 +449,12 @@ body::before {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
     });
+
+    // Bloquer les dates passées
+    const dateInput = document.getElementById("date_heure");
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    dateInput.min = now.toISOString().slice(0, 16);
   </script>
 
 </body>
