@@ -17,6 +17,8 @@
       --muted: #b0a58d;
       --border: rgba(212, 175, 86, 0.28);
       --shadow: 0 16px 45px rgba(0, 0, 0, 0.45);
+      --error: #e05c5c;
+      --success: #4caf82;
     }
 
 ```
@@ -60,19 +62,13 @@ body::before {
   background: linear-gradient(to bottom, var(--gold), transparent);
 }
 .hero-seal {
-  width: 58px;
-  height: 58px;
-  margin: 0 auto 18px;
-  border-radius: 50%;
-  border: 1px solid rgba(212, 175, 86, 0.45);
-  display: grid;
-  place-items: center;
+  width: 58px; height: 58px; margin: 0 auto 18px;
+  border-radius: 50%; border: 1px solid rgba(212, 175, 86, 0.45);
+  display: grid; place-items: center;
   color: var(--gold-light);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
-  letter-spacing: 0.08em;
+  font-family: "Cormorant Garamond", serif; font-size: 22px; letter-spacing: 0.08em;
   background: radial-gradient(circle at 30% 30%, rgba(237, 211, 141, 0.2), rgba(20, 20, 20, 0.35));
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 0 20px rgba(212, 175, 86, 0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45), inset 0 0 20px rgba(212,175,86,0.08);
   animation: fadeUp 0.7s ease both 0.03s;
 }
 .deco-circle { position: absolute; border-radius: 50%; border: 1px solid var(--border); pointer-events: none; }
@@ -82,18 +78,15 @@ body::before {
 .brand-label {
   font-size: 11px; letter-spacing: 0.42em; color: var(--gold); text-transform: uppercase;
   font-weight: 400; margin-bottom: 20px; animation: fadeUp 0.7s ease both;
-  text-shadow: 0 0 18px rgba(212, 175, 86, 0.22);
+  text-shadow: 0 0 18px rgba(212,175,86,0.22);
 }
 .hero-name {
   font-family: "Cormorant Garamond", serif; font-size: clamp(50px, 12vw, 78px);
   font-weight: 500; color: var(--text); letter-spacing: 0.06em; line-height: 1.02;
   animation: fadeUp 0.7s ease both 0.1s;
-  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 8px 30px rgba(0,0,0,0.45);
 }
-.hero-name span {
-  display: block; font-style: italic; color: var(--gold-light);
-  font-size: 0.65em; letter-spacing: 0.12em;
-}
+.hero-name span { display: block; font-style: italic; color: var(--gold-light); font-size: 0.65em; letter-spacing: 0.12em; }
 .gold-divider {
   width: 48px; height: 1px;
   background: linear-gradient(to right, transparent, var(--gold), transparent);
@@ -106,14 +99,11 @@ body::before {
 .hero-slogan {
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(16px, 4.5vw, 22px);
-  font-style: italic;
-  color: var(--gold-light);
-  letter-spacing: 0.08em;
-  margin-top: 16px;
-  text-shadow: 0 4px 18px rgba(212, 175, 86, 0.25);
+  font-style: italic; color: var(--gold-light);
+  letter-spacing: 0.08em; margin-top: 16px;
+  text-shadow: 0 4px 18px rgba(212,175,86,0.25);
   animation: fadeUp 0.7s ease both 0.4s;
-  padding: 0 12px;
-  line-height: 1.4;
+  padding: 0 12px; line-height: 1.4;
 }
 
 .contact-section {
@@ -121,36 +111,32 @@ body::before {
   max-width: 460px; margin: 0 auto; position: relative; z-index: 1;
 }
 .contact-btn {
-  display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 20px 22px; text-decoration: none; color: var(--text);
-  box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 16px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px;
+  text-decoration: none; color: var(--text); box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
   transition: border-color 0.25s, background 0.25s, transform 0.15s, box-shadow 0.25s;
-  animation: fadeUp 0.6s ease both;
-  position: relative; overflow: hidden;
+  animation: fadeUp 0.6s ease both; position: relative; overflow: hidden;
 }
 .contact-btn::before {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
   opacity: 0; transition: opacity 0.25s;
 }
-.contact-btn:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 22px 52px rgba(0, 0, 0, 0.5); }
+.contact-btn:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 22px 52px rgba(0,0,0,0.5); }
 .contact-btn:active { transform: translateY(-1px) scale(0.995); }
 .contact-btn:hover::before { opacity: 1; }
 .contact-btn:nth-child(1) { animation-delay: 0.35s; }
 .contact-btn:nth-child(2) { animation-delay: 0.45s; }
 .contact-btn:nth-child(3) { animation-delay: 0.55s; }
 .btn-icon {
-  width: 44px; height: 44px; background: rgba(212, 175, 86, 0.12);
-  border: 1px solid rgba(212, 175, 86, 0.3); border-radius: 12px;
+  width: 44px; height: 44px; background: rgba(212,175,86,0.12);
+  border: 1px solid rgba(212,175,86,0.3); border-radius: 12px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .btn-icon svg { width: 18px; height: 18px; color: var(--gold); }
 .btn-content { flex: 1; }
-.btn-label {
-  font-size: 10px; letter-spacing: 0.19em; color: var(--gold); text-transform: uppercase;
-  margin-bottom: 3px; opacity: 0.8;
-}
+.btn-label { font-size: 10px; letter-spacing: 0.19em; color: var(--gold); text-transform: uppercase; margin-bottom: 3px; opacity: 0.8; }
 .btn-value { font-size: 18px; font-weight: 500; letter-spacing: 0.02em; color: var(--text); }
 .btn-arrow { color: var(--gold); opacity: 0.5; font-size: 18px; }
 
@@ -161,14 +147,10 @@ body::before {
 }
 .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; animation: fadeUp 0.6s ease both 0.6s; }
 .service-card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
-  padding: 18px 16px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
+  background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px; padding: 18px 16px; box-shadow: var(--shadow); backdrop-filter: blur(8px);
 }
-.service-card:hover { border-color: rgba(212, 175, 86, 0.42); transform: translateY(-2px); transition: transform 0.2s, border-color 0.2s; }
+.service-card:hover { border-color: rgba(212,175,86,0.42); transform: translateY(-2px); transition: transform 0.2s, border-color 0.2s; }
 .service-icon { font-size: 22px; margin-bottom: 10px; }
 .service-name { font-size: 13px; font-weight: 500; color: var(--text); letter-spacing: 0.03em; margin-bottom: 4px; }
 .service-desc { font-size: 12px; color: var(--muted); font-weight: 400; line-height: 1.45; }
@@ -178,34 +160,26 @@ body::before {
 .info-row {
   display: flex; align-items: center; gap: 14px; background: var(--card);
   border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 15px 16px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow); backdrop-filter: blur(8px);
 }
-.info-row:hover { border-color: rgba(212, 175, 86, 0.34); }
+.info-row:hover { border-color: rgba(212,175,86,0.34); }
 .info-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; opacity: 0.7; }
 .info-text { font-size: 14px; font-weight: 400; color: #b6b6b6; letter-spacing: 0.02em; }
 .info-text strong { color: var(--text); font-weight: 400; }
 
 .reservation-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
-  animation: fadeUp 0.6s ease both 0.7s;
-  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.48);
-  backdrop-filter: blur(10px);
+  background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+  overflow: hidden; animation: fadeUp 0.6s ease both 0.7s;
+  box-shadow: 0 20px 56px rgba(0,0,0,0.48); backdrop-filter: blur(10px);
 }
 .res-header {
   background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
   border-bottom: 1px solid var(--border); padding: 20px 22px;
 }
-.res-title {
-  font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 500;
-  color: var(--gold-light); letter-spacing: 0.08em; margin-bottom: 4px;
-}
+.res-title { font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 500; color: var(--gold-light); letter-spacing: 0.08em; margin-bottom: 4px; }
 .res-subtitle { font-size: 13px; color: var(--muted); font-weight: 400; letter-spacing: 0.02em; }
 .res-body { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
-.res-field { display: flex; flex-direction: column; gap: 6px; }
+.res-field { display: flex; flex-direction: column; gap: 5px; }
 .field-label { font-size: 10px; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; opacity: 0.85; }
 .field-input, .field-textarea {
   font-family: "DM Sans", sans-serif; font-size: 15px; font-weight: 400; color: var(--text);
@@ -213,92 +187,60 @@ body::before {
   border-radius: 10px; padding: 13px 14px; outline: none; width: 100%;
   transition: border-color 0.2s, background 0.2s;
 }
-.field-input:focus, .field-textarea:focus { border-color: rgba(212, 175, 86, 0.55); background: rgba(255,255,255,0.08); }
+.field-input:focus, .field-textarea:focus { border-color: rgba(212,175,86,0.55); background: rgba(255,255,255,0.08); }
 .field-input::placeholder, .field-textarea::placeholder { color: #666; }
+.field-input.valid  { border-color: var(--success) !important; }
+.field-input.invalid { border-color: var(--error)  !important; }
+.field-select {
+  font-family: "DM Sans", sans-serif; font-size: 15px; font-weight: 400; color: var(--text);
+  background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px; padding: 13px 36px 13px 14px; outline: none; width: 100%;
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d4af56' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.field-select:focus { border-color: rgba(212,175,86,0.55); }
+.field-select option { background: #1a1a1a; color: var(--text); }
+.field-select.valid   { border-color: var(--success) !important; }
+.field-select.invalid { border-color: var(--error)   !important; }
 .field-textarea { resize: none; height: 70px; line-height: 1.5; }
+.field-error { font-size: 11px; color: var(--error); letter-spacing: 0.03em; min-height: 15px; padding-left: 2px; }
+.field-hint  { font-size: 11px; color: var(--muted); letter-spacing: 0.03em; padding-left: 2px; }
 .send-btn {
   background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
   color: #151515; border: none; border-radius: 12px;
   padding: 16px 20px; font-family: "DM Sans", sans-serif; font-size: 13px;
   font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;
-  box-shadow: 0 12px 28px rgba(212, 175, 86, 0.28);
-  transition: transform 0.15s, filter 0.2s;
+  box-shadow: 0 12px 28px rgba(212,175,86,0.28);
+  transition: transform 0.15s, filter 0.2s, opacity 0.2s;
+  margin-top: 4px;
 }
-.send-btn:hover { filter: brightness(1.04); transform: translateY(-1px); }
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  animation: fadeUp 0.6s ease both 0.75s;
-}
-.vehicle-card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.vehicle-card:hover { border-color: rgba(212, 175, 86, 0.4); }
-.vehicle-card img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  cursor: zoom-in;
-}
-.vehicle-caption {
-  font-size: 12px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  padding: 10px 12px;
-  text-align: center;
-}
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 24px;
-}
+.send-btn:hover   { filter: brightness(1.04); transform: translateY(-1px); }
+.send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.form-success { display: none; text-align: center; padding: 36px 22px; }
+.form-success.show { display: block; }
+.success-icon  { font-size: 44px; margin-bottom: 14px; }
+.success-title { font-family: "Cormorant Garamond", serif; font-size: 24px; color: var(--gold-light); margin-bottom: 10px; }
+.success-text  { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+.vehicle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; animation: fadeUp 0.6s ease both 0.75s; }
+.vehicle-card { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+.vehicle-card:hover { border-color: rgba(212,175,86,0.4); }
+.vehicle-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; cursor: zoom-in; }
+.vehicle-caption { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.09em; padding: 10px 12px; text-align: center; }
+
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 9999; padding: 24px; }
 .lightbox.open { display: flex; }
-.lightbox img {
-  max-width: min(100%, 980px);
-  max-height: 85vh;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
-}
-.lightbox-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--gold);
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-}
+.lightbox img { max-width: min(100%, 980px); max-height: 85vh; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.55); }
+.lightbox-close { position: absolute; top: 18px; right: 18px; width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 50%; background: rgba(0,0,0,0.4); color: var(--gold); font-size: 24px; line-height: 1; cursor: pointer; }
+
 .footer { text-align: center; padding: 40px 24px 56px; position: relative; z-index: 1; }
-.footer-line {
-  width: 48px; height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
-  margin: 0 auto 20px;
-}
+.footer-line { width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); margin: 0 auto 20px; }
 .footer-text { font-size: 13px; color: var(--gold); letter-spacing: 0.11em; font-weight: 500; }
-.signature {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #9e906d;
-  letter-spacing: 0.08em;
-}
+.signature { margin-top: 10px; font-size: 12px; color: #9e906d; letter-spacing: 0.08em; }
+
 @media (max-width: 420px) {
   .hero { padding: 64px 18px 44px; }
   .contact-section, .section { padding-left: 18px; padding-right: 18px; }
@@ -358,9 +300,9 @@ body::before {
     <p class="section-title">Infos pratiques</p>
     <div class="info-list">
       <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>Disponible</strong> 7j/7 - 24h/24 sur réservation</div></div>
-      <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>Zone</strong> Paris & région parisienne sans réservation</div></div>
+      <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>Zone</strong> Paris &amp; région parisienne sans réservation</div></div>
       <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>France entière</strong> sur réservation</div></div>
-      <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>Paiement</strong> Carte bancaire & espèces</div></div>
+      <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>Paiement</strong> Carte bancaire &amp; espèces</div></div>
       <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>Tarifs</strong> réglementés par la préfecture</div></div>
     </div>
   </div>
@@ -370,18 +312,88 @@ body::before {
     <div class="reservation-box">
       <div class="res-header">
         <div class="res-title">Demande de réservation</div>
-        <div class="res-subtitle">Pour toute réservation, merci de renseigner les informations ci-dessous</div>
+        <div class="res-subtitle">Tous les champs sont obligatoires sauf les informations complémentaires</div>
       </div>
-      <form class="res-body" action="https://formspree.io/f/xykblwep" method="POST">
-        <div class="res-field"><label class="field-label">Nom & Prénom</label><input class="field-input" type="text" name="nom" placeholder="Votre nom et prénom" required></div>
-        <div class="res-field"><label class="field-label">Numéro de téléphone</label><input class="field-input" type="tel" name="telephone" placeholder="Votre numéro de téléphone" required></div>
-        <div class="res-field"><label class="field-label">Date & Heure de prise en charge</label><input class="field-input" type="datetime-local" name="date_heure" id="date_heure" required></div>
-        <div class="res-field"><label class="field-label">Adresse de prise en charge</label><input class="field-input" type="text" name="adresse_depart" placeholder="Adresse complète du point de départ" required></div>
-        <div class="res-field"><label class="field-label">Destination</label><input class="field-input" type="text" name="destination" placeholder="Votre destination" required></div>
-        <div class="res-field"><label class="field-label">Informations complémentaires</label><textarea class="field-textarea" name="informations" placeholder="Nombre de passagers, bagages..."></textarea></div>
-        <button type="submit" class="send-btn">Envoyer la réservation</button>
-      </form>
+
+```
+  <form class="res-body" id="resForm" novalidate>
+
+    <div class="res-field">
+      <label class="field-label" for="nom">Nom &amp; Prénom</label>
+      <input class="field-input" type="text" id="nom" name="nom" placeholder="Ex : Jean Dupont" autocomplete="name" required>
+      <span class="field-error" id="err-nom"></span>
     </div>
+
+    <div class="res-field">
+      <label class="field-label" for="telephone">Numéro de téléphone</label>
+      <input class="field-input" type="tel" id="telephone" name="telephone" placeholder="Ex : 06 12 34 56 78" autocomplete="tel" required>
+      <span class="field-error" id="err-telephone"></span>
+      <span class="field-hint">Format : 06, 07, 01–05 ou +33…</span>
+    </div>
+
+    <div class="res-field">
+      <label class="field-label" for="date_heure">Date &amp; Heure de prise en charge</label>
+      <input class="field-input" type="datetime-local" id="date_heure" name="date_heure" required>
+      <span class="field-error" id="err-date"></span>
+    </div>
+
+    <div class="res-field">
+      <label class="field-label" for="adresse_depart">Adresse de prise en charge</label>
+      <input class="field-input" type="text" id="adresse_depart" name="adresse_depart" placeholder="Ex : 12 rue de Rivoli, 75001 Paris" autocomplete="street-address" required>
+      <span class="field-error" id="err-adresse"></span>
+      <span class="field-hint">Indiquez le numéro, la rue et la ville</span>
+    </div>
+
+    <div class="res-field">
+      <label class="field-label" for="destination">Destination</label>
+      <input class="field-input" type="text" id="destination" name="destination" placeholder="Ex : Aéroport CDG Terminal 2E" required>
+      <span class="field-error" id="err-destination"></span>
+    </div>
+
+    <div class="res-field">
+      <label class="field-label" for="passagers">Nombre de passagers</label>
+      <select class="field-select" id="passagers" name="passagers" required>
+        <option value="">— Sélectionnez —</option>
+        <option value="1">1 passager</option>
+        <option value="2">2 passagers</option>
+        <option value="3">3 passagers</option>
+        <option value="4">4 passagers</option>
+        <option value="5">5 passagers</option>
+        <option value="6">6 passagers</option>
+        <option value="7">7 passagers (max van)</option>
+      </select>
+      <span class="field-error" id="err-passagers"></span>
+    </div>
+
+    <div class="res-field">
+      <label class="field-label" for="bagages">Bagages</label>
+      <select class="field-select" id="bagages" name="bagages" required>
+        <option value="">— Sélectionnez —</option>
+        <option value="Aucun bagage">Aucun bagage</option>
+        <option value="Bagage cabine uniquement">Bagage cabine uniquement</option>
+        <option value="1 valise">1 valise</option>
+        <option value="2 valises">2 valises</option>
+        <option value="3 valises ou plus">3 valises ou plus</option>
+      </select>
+      <span class="field-error" id="err-bagages"></span>
+    </div>
+
+    <div class="res-field">
+      <label class="field-label" for="informations">Informations complémentaires <span style="opacity:0.45;font-size:9px;">(facultatif)</span></label>
+      <textarea class="field-textarea" id="informations" name="informations" placeholder="Siège bébé, numéro de vol ou train, remarques..."></textarea>
+    </div>
+
+    <button type="submit" class="send-btn" id="sendBtn">Envoyer la réservation</button>
+  </form>
+
+  <div class="form-success" id="formSuccess">
+    <div class="success-icon">✅</div>
+    <div class="success-title">Réservation envoyée !</div>
+    <p class="success-text">Votre demande a bien été transmise à Rabah LARBI.<br>Vous serez contacté très prochainement pour confirmation.</p>
+  </div>
+</div>
+```
+
   </div>
 
   <div class="section" style="padding-top:0;">
@@ -418,43 +430,157 @@ body::before {
   </div>
 
   <script>
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
+    // ── Lightbox ──────────────────────────────────────────────────────────
+    const lightbox      = document.getElementById("lightbox");
+    const lightboxImg   = document.getElementById("lightboxImg");
     const lightboxClose = document.getElementById("lightboxClose");
-    const zoomableImages = document.querySelectorAll(".zoomable");
-
     function openLightbox(src, alt) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt || "";
+      lightboxImg.src = src; lightboxImg.alt = alt || "";
       lightbox.classList.add("open");
       lightbox.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
-
     function closeLightbox() {
       lightbox.classList.remove("open");
       lightbox.setAttribute("aria-hidden", "true");
-      lightboxImg.src = "";
-      document.body.style.overflow = "";
+      lightboxImg.src = ""; document.body.style.overflow = "";
     }
-
-    zoomableImages.forEach((img) => {
-      img.addEventListener("click", () => openLightbox(img.src, img.alt));
-    });
-
+    document.querySelectorAll(".zoomable").forEach(img =>
+      img.addEventListener("click", () => openLightbox(img.src, img.alt))
+    );
     lightboxClose.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener("keydown", (e) => {
+    lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", e => {
       if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
     });
 
-    // Bloquer les dates passées
+    // ── Date minimum = maintenant ─────────────────────────────────────────
     const dateInput = document.getElementById("date_heure");
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    dateInput.min = now.toISOString().slice(0, 16);
+    (function setMinDate() {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      dateInput.min = now.toISOString().slice(0, 16);
+    })();
+
+    // ── Helpers ───────────────────────────────────────────────────────────
+    function showErr(id, msg) { const e = document.getElementById(id); if(e) e.textContent = msg; }
+    function clearErr(id)     { showErr(id, ""); }
+    function setValid(el, ok) {
+      el.classList.toggle("valid",   ok);
+      el.classList.toggle("invalid", !ok);
+    }
+
+    // ── Règles de validation ──────────────────────────────────────────────
+    function validateNom() {
+      const el = document.getElementById("nom");
+      const v  = el.value.trim();
+      if (!v)          { showErr("err-nom", "⚠ Nom et prénom obligatoires."); setValid(el,false); return false; }
+      if (v.length < 3){ showErr("err-nom", "⚠ Minimum 3 caractères.");       setValid(el,false); return false; }
+      if (/\d/.test(v)){ showErr("err-nom", "⚠ Pas de chiffres dans le nom."); setValid(el,false); return false; }
+      clearErr("err-nom"); setValid(el,true); return true;
+    }
+
+    function validateTel() {
+      const el = document.getElementById("telephone");
+      const v  = el.value.trim().replace(/[\s.\-]/g,"");
+      if (!v) { showErr("err-telephone","⚠ Numéro obligatoire."); setValid(el,false); return false; }
+      if (!/^(\+33|0033|0)[1-9]\d{8}$/.test(v)) {
+        showErr("err-telephone","⚠ Numéro invalide. Ex : 06 12 34 56 78");
+        setValid(el,false); return false;
+      }
+      clearErr("err-telephone"); setValid(el,true); return true;
+    }
+
+    function validateDate() {
+      const el = document.getElementById("date_heure");
+      const v  = el.value;
+      if (!v) { showErr("err-date","⚠ Veuillez choisir une date et heure."); setValid(el,false); return false; }
+      if (new Date(v) <= new Date()) { showErr("err-date","⚠ La date doit être dans le futur."); setValid(el,false); return false; }
+      clearErr("err-date"); setValid(el,true); return true;
+    }
+
+    function validateAdresse() {
+      const el = document.getElementById("adresse_depart");
+      const v  = el.value.trim();
+      if (!v)           { showErr("err-adresse","⚠ Adresse obligatoire.");                         setValid(el,false); return false; }
+      if (v.length < 10){ showErr("err-adresse","⚠ Adresse trop courte (numéro + rue + ville)."); setValid(el,false); return false; }
+      clearErr("err-adresse"); setValid(el,true); return true;
+    }
+
+    function validateDestination() {
+      const el = document.getElementById("destination");
+      const v  = el.value.trim();
+      if (!v)          { showErr("err-destination","⚠ Destination obligatoire."); setValid(el,false); return false; }
+      if (v.length < 3){ showErr("err-destination","⚠ Destination trop courte."); setValid(el,false); return false; }
+      clearErr("err-destination"); setValid(el,true); return true;
+    }
+
+    function validateSelect(id, errId, label) {
+      const el = document.getElementById(id);
+      if (!el.value) { showErr(errId,"⚠ Veuillez sélectionner " + label + "."); setValid(el,false); return false; }
+      clearErr(errId); setValid(el,true); return true;
+    }
+
+    // Validation en temps réel (au départ du champ)
+    document.getElementById("nom").addEventListener("blur", validateNom);
+    document.getElementById("telephone").addEventListener("blur", validateTel);
+    document.getElementById("date_heure").addEventListener("change", validateDate);
+    document.getElementById("adresse_depart").addEventListener("blur", validateAdresse);
+    document.getElementById("destination").addEventListener("blur", validateDestination);
+    document.getElementById("passagers").addEventListener("change", () => validateSelect("passagers","err-passagers","le nombre de passagers"));
+    document.getElementById("bagages").addEventListener("change",   () => validateSelect("bagages","err-bagages","les bagages"));
+
+    // ── Envoi du formulaire ───────────────────────────────────────────────
+    document.getElementById("resForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const allOk = [
+        validateNom(),
+        validateTel(),
+        validateDate(),
+        validateAdresse(),
+        validateDestination(),
+        validateSelect("passagers","err-passagers","le nombre de passagers"),
+        validateSelect("bagages","err-bagages","les bagages"),
+      ].every(Boolean);
+
+      if (!allOk) return;
+
+      const btn = document.getElementById("sendBtn");
+      btn.disabled = true;
+      btn.textContent = "Envoi en cours…";
+
+      const payload = {
+        nom:            document.getElementById("nom").value.trim(),
+        telephone:      document.getElementById("telephone").value.trim(),
+        date_heure:     document.getElementById("date_heure").value,
+        adresse_depart: document.getElementById("adresse_depart").value.trim(),
+        destination:    document.getElementById("destination").value.trim(),
+        passagers:      document.getElementById("passagers").value,
+        bagages:        document.getElementById("bagages").value,
+        informations:   document.getElementById("informations").value.trim(),
+      };
+
+      try {
+        const res = await fetch("https://formspree.io/f/xykblwep", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          document.getElementById("resForm").style.display = "none";
+          document.getElementById("formSuccess").classList.add("show");
+        } else {
+          btn.disabled = false;
+          btn.textContent = "Envoyer la réservation";
+          alert("Une erreur est survenue. Merci de réessayer ou d'appeler directement.");
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = "Envoyer la réservation";
+        alert("Impossible d'envoyer. Vérifiez votre connexion internet.");
+      }
+    });
   </script>
 
 </body>
